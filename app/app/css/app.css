@@ -1,0 +1,53 @@
+/* app css stylesheet */
+.accordion-toggle a {
+    color:#333333;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.form-signin input[type="text"] {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.icon-refresh-animate {
+    -webkit-animation: rotateThis 1s infinite linear; /* Safari 4+ */
+    -moz-animation:    rotateThis 1s infinite linear; /* Fx 5+ */
+    -o-animation:      rotateThis 1s infinite linear; /* Opera 12+ */
+    animation:         rotateThis 1s infinite linear;
+
+}
+
+.highlight {
+    padding: 9px 14px;
+    margin-bottom: 30px;
+    background-color: #f8f8f8;
+    border: 1px solid rgb(225, 225, 232);
+    border-radius: 4px;
+}
+
+@-webkit-keyframes rotateThis {
+    from { -webkit-transform: scale(1) rotate(0deg);   }
+    to   { -webkit-transform: scale(1) rotate(360deg); }
+}
+@-moz-keyframes rotateThis{
+    from { -moz-transform: scale( 1 ) rotate( 0deg );   }
+    to   { -moz-transform: scale( 1 ) rotate( 360deg ); }
+}
+@-o-keyframes rotateThis {
+    from { -o-transform: scale( 1 ) rotate( 0deg );   }
+    to   { -o-transform: scale( 1 ) rotate( 360deg ); }
+}
+@keyframes rotateThis {
+    from { transform: scale( 1 ) rotate( 0deg );   }
+    to   { transform: scale( 1 ) rotate( 360deg ); }
+}

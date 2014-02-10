@@ -1,0 +1,107 @@
+[ { "name" : "IBM",
+	"user" : "admin",
+    "sentimentResults" : [ 
+    	{ "end" : { "chronology" : {  },
+              "millis" : 1389179673055
+            },
+          "negative" : 5,
+          "neutral" : 0,
+          "positive" : 5,
+          "start" : { "chronology" : {  },
+              "millis" : 1389179673012
+            },
+          "successfull" : true
+        },
+        { "end" : { "chronology" : {  },
+              "millis" : 1389179673055
+            },
+          "negative" : 7,
+          "neutral" : 4,
+          "positive" : 5,
+          "start" : { "chronology" : {  },
+              "millis" : 1389179673055
+            },
+          "successfull" : true
+        },
+        { "negative" : 7,
+          "neutral" : 4,
+          "positive" : 5,
+          "start" : { "chronology" : {  },
+              "millis" : 1389179673055
+            },
+          "successfull" : false
+        }
+      ],
+    "slug" : "ibm"
+  },
+  { "name" : "Google",
+  	"user" : "admin",
+    "sentimentResults" : [ { "end" : { "chronology" : {  },
+              "millis" : 1389179673055
+            },
+          "negative" : 5,
+          "neutral" : 0,
+          "positive" : 10,
+          "start" : { "chronology" : {  },
+              "millis" : 1389179673012
+            },
+          "successfull" : true
+        },
+        { "end" : { "chronology" : {  },
+              "millis" : 1389179673055
+            },
+          "negative" : 7,
+          "neutral" : 4,
+          "positive" : 5,
+          "start" : { "chronology" : {  },
+              "millis" : 1389179673055
+            },
+          "successfull" : true
+        },
+        { "negative" : 7,
+          "neutral" : 4,
+          "positive" : 5,
+          "start" : { "chronology" : {  },
+              "millis" : 1389179673055
+            },
+          "successfull" : false
+        }
+      ],
+    "slug" : "google"
+  },
+  { "name" : "Motorola",
+  	"user" : "admin",
+    "sentimentResults" : [ { "end" : { "chronology" : {  },
+              "millis" : 1389179673055
+            },
+          "negative" : 1,
+          "neutral" : 0,
+          "positive" : 9,
+          "start" : { "chronology" : {  },
+              "millis" : 1389179673012
+            },
+          "successfull" : true
+        },
+        { "end" : { "chronology" : {  },
+              "millis" : 1389179673055
+            },
+          "negative" : 7,
+          "neutral" : 4,
+          "positive" : 5,
+          "start" : { "chronology" : {  },
+              "millis" : 1389179673055
+            },
+          "successfull" : true
+        },
+        { "negative" : 7,
+          "neutral" : 4,
+          "positive" : 5,
+          "start" : { "chronology" : {  },
+              "millis" : 1389179673055
+            },
+          "successfull" : false
+        }
+      ],
+    "slug" : "motorola"
+  }
+]

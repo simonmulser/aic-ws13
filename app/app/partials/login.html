@@ -1,0 +1,12 @@
+<form class="form-signin" role="form">
+    <alert type="success" ng-if="loginError" >{{loginError}}</alert>
+    <h2 class="form-signin-heading">Please sign in</h2>
+        <label class="sr-only" for="username">Username: </label>
+        <input ng-model="user.username" type="text" class="form-control" id="username" placeholder="username" size="50" maxlength="49">
+        <label class="sr-only" for="password">Password: </label>
+        <input ng-model="user.password" type="password" class="form-control" id="password" placeholder="password" size="50" maxlength="49">
+    <button style="margin-top: 10px;" type="submit" class="btn btn-lg btn-primary btn-block" ng-click="attemptLogin(user)">Login</button>
+</form>
+<hr />
+hint admin/test
+

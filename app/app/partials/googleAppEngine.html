@@ -1,0 +1,146 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="highlight">
+            <h2>Companies</h2>
+            <form class="navbar-form" role="search">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" placeholder="Search" ng-model="query">
+                    </div>
+                    <div class="col-md-6">
+                        Sort by:
+                        <select class="form-control" ng-model="orderProperty">
+                            <option value="name">alphabetical</option>
+                            <option value="sentiment">sentiment</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <br />
+            <accordion class="companies">
+                <accordion-group is-open="isopen" ng-repeat="company in companies | filter:query | orderBy:orderProperty">
+                    <accordion-heading>
+                        <a href="#"><i class="glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"> {{company.name}}</i></a>
+                        <button type="button" ng-disabled="company.addButtonDisabled" class="btn btn-info pull-right btn-xs" ng-click="addCompanyToAnalysis(company);$event.stopPropagation();" >analyze</button>
+                    </accordion-heading>
+                    <div ng-if="company.sentimentResults">
+                        {{company.name}} - last sentiment analysis:
+                        <ul>
+                            <li ng-repeat="sentimentResult in company.sentimentResults">
+                                {{sentimentResult.positive /
+                                (sentimentResult.positive + sentimentResult.negative)*100 | number:2}}%
+                            </li>
+                        </ul>
+                    </div>
+                    <div ng-if="!company.sentimentResults">
+                        <a href="#/companies/{{company.slug}}">{{company.name}}</a> - no sentiment results available.
+                    </div>
+                </accordion-group>
+            </accordion>
+            <br />
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <label class="sr-only" for="company">Company</label>
+                    <input ng-model="company.name" type="text" class="form-control" id="company" placeholder="Enter new company" size="50" maxlength="49">
+                </div>
+                <button type="submit" class="btn btn-primary" ng-click="addCompany(company)">Add</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="highlight">
+
+            <h2>Your new analysis</h2>
+            <div ng-if="!analysisCompanies.length">
+                <span >Add at least one companies to analyze or:</span><br/><br/>
+                <button type="button" class="btn btn-primary" ng-click="startAnalysis(companies)" >Analyze all companies</button>
+            </div>
+            <accordion class="analysisCompanies">
+                <div class="form-group">
+                    <accordion-group is-open="isopen" ng-repeat="item in analysisCompanies">
+                        <accordion-heading>
+                            <a href="#"><i class="glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"> {{item.name}}</i></a>
+                            <button type="button" class="btn btn-danger pull-right btn-xs" ng-click="removeItem($index);$event.stopPropagation()" >remove</button>
+                        </accordion-heading>
+                        <a href="#/companies/{{company.slug}}">{{item.name}}</a> - sentiment: {{item.sentimentResults[0].positive /
+                        (item.sentimentResults[0].positive + item.sentimentResults[0].negative)}}
+                    </accordion-group>
+                </div>
+            </accordion>
+            <div class="form-group">
+                <button type="button" class="btn btn-success" ng-click="startAnalysis(analysisCompanies)" ng-if="analysisCompanies.length" >Start Analysis</button>
+            </div>
+        </div>
+    </div>
+    <!--   <div class="col-md-6">
+           <div class="highlight">
+               <h2>Cloud loading</h2>
+               <tabset justified="true" class="instancePool">
+                   <tab heading="Instance {{$index + 1}}" ng-repeat="instance in instancePool.instances" select="saveInstanceTab(instance.id)" active="instance.activeInstanceTab">
+                       Running at {{instance.ipAddress}} with {{cloudObjectsCount}} cloud objects<br />
+                       Startup time: {{instance.startupTime | date:'medium'}} Last request time: {{instance.lastRequestTime | date:'medium'}}<br />
+                       {{processors}} processors with current CPU load: {{instance.currentCPULoad}}<br />
+                       Maximum memory {{instance.maxMemory}}, where {{instance.usedMemory/instance.maxMemory*100 | number:2}}% are used.
+                   </tab>
+               </tabset>
+           </div>
+       </div>-->
+</div>
+<!--<div class="row">
+    <div class="col-md-12">
+        <div class="highlight">
+            <h2>Your new analysis</h2>
+            <div ng-if="!analysisCompanies.length">
+                <span >Add at least one companies to analyze or:</span><br/><br/>
+                <button type="button" class="btn btn-primary" ng-click="startAnalysis(companies)" >Analyze all companies</button>
+            </div>
+            <accordion class="analysisCompanies">
+                <div class="form-group">
+                    <accordion-group is-open="isopen" ng-repeat="item in analysisCompanies">
+                        <accordion-heading>
+                            <a href="#"><i class="glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"> {{item.name}}</i></a>
+                            <button type="button" class="btn btn-danger pull-right btn-xs" ng-click="removeItem($index);$event.stopPropagation()" >remove</button>
+                        </accordion-heading>
+                        <a href="#/companies/{{company.slug}}">{{item.name}}</a> - sentiment: {{item.sentimentResults[0].positive /
+                        (item.sentimentResults[0].positive + item.sentimentResults[0].negative)}}
+                    </accordion-group>
+                </div>
+            </accordion>
+            <div class="form-group">
+                <button type="button" class="btn btn-success" ng-click="startAnalysis(analysisCompanies)" ng-if="analysisCompanies.length" >Start Analysis</button>
+            </div>
+        </div>
+    </div>
+</div>-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="highlight">
+            <h2>Your analyses</h2>
+            <div ng-if="!analyses.length">
+                <span >No started analyses.</span><br/><br/>
+            </div>
+            <tabset justified="true" class="analyses">
+                <tab heading="analysis {{analysis.id}}<span>hallo</span>" ng-repeat="analysis in analyses | orderBy:'id'" select="saveAnalysisTab(analysis.id)" active="analysis.activeAnalysisTab">
+                    <tab-heading>
+                        <i ng-if="!analysis.finished"class="glyphicon glyphicon-refresh icon-refresh-animate"></i><i ng-if="analysis.finished" class="glyphicon glyphicon-ok"></i> analysis {{analysis.id}}
+                    </tab-heading>
+                    Information for Analysis with id {{analysis.id}}:<br />
+                    started: {{analysis.started | date:'medium'}} and finished: {{analysis.finished | date:'medium'}}<br />
+                    <span ng-if="analysis.finished">duration: {{analysis.finished-analysis.started}}</span> <br />
+                    for companies:
+                    <ul>
+                        <li ng-repeat="company in analysis.companies" ng-init="sentiment=company.sentimentResults[0]">
+                            {{company.name}} <span ng-if="!sentiment">no result</span><span ng-if="analysis.finished && sentiment">- {{sentiment.positive/(sentiment.positive + sentiment.negative)*100| number:2}}% (positive: {{sentiment.positive}} and negative: {{sentiment.negative}})</span>
+                        </li>
+                    </ul>
+                </tab>
+            </tabset>
+        </div>
+    </div>
+</div>
+
+<hr />
+<h3>Debug Output:</h3>
+companies: {{companies | json}} <br/>
+analysisCompanies: {{analysisCompanies | json}} <br/>
+analyses: {{analyses | json}}
